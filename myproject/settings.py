@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-29*cx)3eh(eawl#t6c5duwag0g3m(^6jnzhnfn=z0#gs6s30+f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = False if os.environ.get('VERCEL_REGION') else True
 
 ALLOWED_HOSTS = ['vercel.app', '.now.sh', '.vercel.app', 'localhost', '127.0.0.1']
 
@@ -57,6 +57,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
              os.path.join(BASE_DIR / 'app' / 'templates'),
+             os.path.join(BASE_DIR, '..', 'app', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
