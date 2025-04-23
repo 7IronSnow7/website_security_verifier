@@ -56,8 +56,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-             os.path.join(BASE_DIR / 'app' / 'templates'),
-             os.path.join(BASE_DIR, '..', 'app', 'templates'),
+             os.path.join(BASE_DIR, 'templates'),
+              # Add Vercel's template directory when running on Vercel
+            '/var/app/templates' if os.environ.get("RUNNING_ON_VERCEL") else '',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
