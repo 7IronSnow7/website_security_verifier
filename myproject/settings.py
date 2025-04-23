@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-29*cx)3eh(eawl#t6c5duwag0g3m(^6jnzhnfn=z0#gs6s30+f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.environ.get('VERCEL_REGION') else True
+DEBUG = True
 
 ALLOWED_HOSTS = ['vercel.app', '.now.sh', '.vercel.app', 'localhost', '127.0.0.1']
 
@@ -56,9 +56,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-             os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'myproject', 'templates'),
+            os.path.join(BASE_DIR, 'templates'),
               # Add Vercel's template directory when running on Vercel
-            '/var/app/templates' if os.environ.get("RUNNING_ON_VERCEL") else '',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
